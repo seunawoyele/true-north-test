@@ -1,0 +1,25 @@
+{
+    "id": 1,
+    "logo": "www.myrestorant.com/img/logo.png",
+    "commercialName": "myRest",
+    "legalName": "myRest",
+    "rating": 0.0,
+    "reviews": [
+        {
+            "name": "Jose Smith",
+            "review": "very good rest, but it's very expensive",
+            "rating": 4.0
+        }
+    ],
+    "meals": [
+        {
+            "name": "filet T-bone especial",
+            "description": "incredible t-bone with potatoes and caesars salad",
+            "price": 200.0
+        }
+    ],
+    "commercialEmail": "contact@myrestorant.com",
+    "adminNumber": "555-4234234",
+    "address": "someplace...",
+    "Location": "12.31232323,-10.312321323"
+}
