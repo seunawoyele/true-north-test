@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('./_db')
 
 
-const Review = db.define('Review', {
+const Order = db.define('Order', {
     id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -11,17 +11,22 @@ const Review = db.define('Review', {
         autoIncrement: true,
         validate: {}
     },
-    review: {
-        type: Sequelize.TEXT,
+    total: {
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: true,
         validate: {}
     },
-    rating: {
-        type: Sequelize.INTEGER,
+    address: {
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {}
     },
-    name: {
+    location: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {}
+    },
+    customer: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {}
@@ -30,10 +35,10 @@ const Review = db.define('Review', {
 },
 
     {
-        tableName: 'tbl_review',
+        tableName: 'tbl_order',
         freezeTableName: true,
         underscored: true,
     }
 )
 
-module.exports = Review;
+module.exports = Order;

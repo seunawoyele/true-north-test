@@ -1,6 +1,6 @@
 {
   "connection": {
-    "url":"postgres://postgres:1234@127.0.0.1:5432/restodelivery_db",
+    "url":"postgres://postgres:1234@xserver:5432/restodelivery_db",
     "pool": {
       "max": 5,
       "min": 0,
