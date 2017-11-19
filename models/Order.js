@@ -38,6 +38,7 @@ const Order = db.define('Order', {
         tableName: 'tbl_order',
         freezeTableName: true,
         underscored: true,
+        timestamps: false
     }
 )
 

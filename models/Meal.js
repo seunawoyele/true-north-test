@@ -33,6 +33,7 @@ const Meal = db.define('Meal', {
         tableName: 'tbl_meal',
         freezeTableName: true,
         underscored: true,
+        timestamps: false
     }
 )
 

@@ -37,6 +37,7 @@ const OrderDetail = db.define('OrderDetail', {
         tableName: 'tbl_order_detail',
         freezeTableName: true,
         underscored: true,
+        timestamps: false
     }
 )
 

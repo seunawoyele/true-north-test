@@ -33,6 +33,7 @@ const Review = db.define('Review', {
         tableName: 'tbl_review',
         freezeTableName: true,
         underscored: true,
+        timestamps: false
     }
 )
 

@@ -19,27 +19,22 @@ const Restorant = db.define('Restorant', {
         commercialName: {
             type: Sequelize.STRING,
             allowNull: false,
-            validate: {}
+            field: 'commercial_name'
         },
         legalName: {
             type: Sequelize.STRING,
             allowNull: false,
-            validate: {}
-        },
-        rating: {
-            type: Sequelize.FLOAT,
-            allowNull: false,
-            validate: {}
+            field: 'legal_name'
         },
         commercialEmail: {
             type: Sequelize.STRING,
             allowNull: false,
-            validate: {}
+            field: 'commercial_email'
         },
         adminNumber: {
             type: Sequelize.STRING,
             allowNull: false,
-            validate: {}
+            field: 'admin_number'
         },
         address: {
             type: Sequelize.STRING,
@@ -57,6 +52,8 @@ const Restorant = db.define('Restorant', {
         tableName: 'tbl_restorant',
         freezeTableName: true,
         underscored: true,
+        timestamps: false
+        
     }
 )
 
