@@ -5,7 +5,7 @@ const Review = require('./Review')
 const Order = require('./Order')
 const OrderDetail = require('./OrderDetail')
 //asociations
-//Meal.belongsTo(Restorant, { foreignKey: 'restorant_id', targetKey: 'restorant' });
+
 Restorant.hasMany(Meal, {
     foreignKey: 'restorant_id',
     constraints: false,
@@ -22,6 +22,10 @@ Order.hasMany(OrderDetail, {
     constraints: false,
     targetKey: 'details'
 });
+
+Meal.belongsTo(Restorant);
+Review.belongsTo(Restorant);
+OrderDetail.belongsTo(Order);
 
 
 module.exports = { Restorant, Meal, Review, Order, OrderDetail }
