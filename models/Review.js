@@ -11,6 +11,12 @@ const Review = db.define('Review', {
         autoIncrement: true,
         validate: {}
     },
+    restorantId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: 'restorant_id',
+        
+    },
     review: {
         type: Sequelize.TEXT,
         allowNull: true,
