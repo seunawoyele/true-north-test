@@ -42,6 +42,46 @@ app.get('/restorants', function (req, res) {
 })
 
 
+/**
+ * GET
+ * to list restorants, filter by rating
+ */
+app.get('/restorants/:rating', function (req, res) {
+    
+        models.Restorant.findAll({
+            include: [{
+                model: models.Review,
+                exclude: ['restorantId']
+            },
+            {
+                model: models.Meal, as: "meals"
+            }
+            ]
+        }
+    
+        ).then(rests => {
+    
+            let restsFiltered = [];
+
+            _.forEach(rests, function (value) {
+    
+                let revs = value.dataValues.Reviews;
+                let acum = _.sumBy(revs, 'rating');
+                let total_reviews = _.size(revs)
+                value.dataValues.rating_avg = acum / total_reviews; ///rating AVG
+
+                if(value.dataValues.rating_avg==req.params.rating) ///filter by rating 
+                restsFiltered.push(value)
+
+            })
+    
+            res.send(restsFiltered)
+        })
+    
+    })
+
+
+
 
 
 
@@ -72,8 +112,6 @@ app.post('/restorant/review/:resId', (req, res) => {
 
     let myObject = req.body;
     myObject.restorantId = parseInt(req.params.resId);
-    myObject.id = 4;
-    console.log(myObject)
     models.Review.build(myObject).save().then(result => { ///ok
         let success = { "success": true, "msg": "restorant review posted" }
         res.send(success)
