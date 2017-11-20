@@ -24,6 +24,7 @@
   "homepage": "https://github.com/delimce/true-north-test#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "google-distance-matrix": "^1.0.0",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.22.6"

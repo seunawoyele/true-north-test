@@ -36,7 +36,11 @@ const Order = db.define('Order', {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {}
-    }
+    },
+    eta: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
 
 },
 
