@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const models = require("./models");
 const bodyParser = require('body-parser');
+const Sequelize = require('sequelize');
+const _ = require("lodash");
 
 app.use(bodyParser.json()); ///to get json format
 
@@ -25,10 +27,23 @@ app.get('/restorants', function (req, res) {
     }
 
     ).then(rests => {
+
+        _.forEach(rests, function (value) {
+
+            let revs = value.dataValues.Reviews;
+            let acum = _.sumBy(revs, 'rating');
+            let total_reviews = _.size(revs)
+            value.dataValues.rating_avg = acum / total_reviews; ///rating AVG
+        })
+
         res.send(rests)
     })
 
 })
+
+
+
+
 
 
 /**
@@ -125,7 +140,7 @@ app.post('/order', (req, res) => {
         }]
     }).then(function (instance) {
         console.log(instance)
-        let success = { "success": true, "msg": "order #"+instance.dataValues.id+" created" }
+        let success = { "success": true, "msg": "order #" + instance.dataValues.id + " created" }
         res.send(success)
     }).catch(function (err) {
         console.error(err);
