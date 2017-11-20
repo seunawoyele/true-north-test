@@ -19,7 +19,7 @@ app.get('/restorants', function (req, res) {
             exclude: ['restorantId']
         },
         {
-            model: models.Meal
+            model: models.Meal, as: "meals"
         }
         ]
     }
@@ -57,10 +57,11 @@ app.post('/restorant/review/:resId', (req, res) => {
 
     let myObject = req.body;
     myObject.restorantId = parseInt(req.params.resId);
-    myObject.id = 3;
+    myObject.id = 4;
     console.log(myObject)
     models.Review.build(myObject).save().then(result => { ///ok
-        res.send(result)
+        let success = { "success": true, "msg": "restorant review posted" }
+        res.send(success)
     }).catch(error => { ///error
         throw new Error(error);
     })
@@ -81,7 +82,7 @@ app.put('/restorant/:resId', (req, res) => {
             id: parseInt(req.params.resId)
         },
         include: [
-            { model: models.Meal }
+            { model: models.Meal, as: 'meals' }
         ]
     };
 
@@ -89,7 +90,12 @@ app.put('/restorant/:resId', (req, res) => {
 
     models.Restorant.findOne(myFIlter).then(function (resto) {
         if (resto) {
-            resto.update(myObject).then(data => {
+            resto.update(myObject, {
+                include: [{
+                    model: models.Meal,
+                    as: 'meals'
+                }]
+            }).then(data => {
                 res.send(resto)
             }).catch(error => {
                 throw new Error("Error updating restorant");
@@ -101,6 +107,35 @@ app.put('/restorant/:resId', (req, res) => {
     });
 
 })
+
+
+
+/**
+ * POST
+ * create new order
+ */
+app.post('/order', (req, res) => {
+
+    let myObject = req.body;
+
+    models.Order.create(myObject, {
+        include: [{
+            model: models.OrderDetail,
+            as: 'details'
+        }]
+    }).then(function (instance) {
+        console.log(instance)
+        let success = { "success": true, "msg": "order #"+instance.dataValues.id+" created" }
+        res.send(success)
+    }).catch(function (err) {
+        console.error(err);
+    });
+
+
+})
+
+
+
 
 
 app.listen(3000, () => console.log('my server is running'))

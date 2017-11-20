@@ -8,24 +8,25 @@ const OrderDetail = require('./OrderDetail')
 
 Restorant.hasMany(Meal, {
     foreignKey: 'restorant_id',
-    constraints: false,
-    targetKey: 'meals'
+    allowNull: false,
+    as: 'meals'
 });
 Restorant.hasMany(Review, {
     foreignKey: 'restorant_id',
-    constraints: false,
+    allowNull: false,
     targetKey: 'reviews'
 });
 
 Order.hasMany(OrderDetail, {
     foreignKey: 'order_id',
-    constraints: false,
-    targetKey: 'details'
+    allowNull: false,
+    as:"details"
 });
 
 Meal.belongsTo(Restorant);
 Review.belongsTo(Restorant);
-OrderDetail.belongsTo(Order);
+Order.belongsTo(Restorant);
+OrderDetail.belongsTo(Order, { as: 'details' });
 
 
 module.exports = { Restorant, Meal, Review, Order, OrderDetail }

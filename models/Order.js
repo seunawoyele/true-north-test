@@ -11,6 +11,12 @@ const Order = db.define('Order', {
         autoIncrement: true,
         validate: {}
     },
+    restorantId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: 'restorant_id',
+
+    },
     total: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: true,
