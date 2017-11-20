@@ -170,7 +170,7 @@ app.put('/restorant/:resId', (req, res) => {
 
 /**
  * POST
- * create new order
+ * create new order with ETA
  */
 app.post('/order', (req, res) => {
 
